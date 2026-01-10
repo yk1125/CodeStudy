@@ -2,54 +2,40 @@
   "name": "hackernews-tegg",
   "private": true,
   "description": "Hello Egg.js",
-  "homepage": "https://github.com/YOUR_USERNAME/YOUR_REPO#readme",
+  "homepage": "https://github.com/yk1125/CodeStudy#readme",
   "bugs": {
-    "url": "https://github.com/YOUR_USERNAME/YOUR_REPO/issues"
+    "url": "https://github.com/yk1125/CodeStudy/issues"
   },
   "license": "MIT",
   "author": "Author Name <author.name@mail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/YOUR_USERNAME/YOUR_REPO.git"
+    "url": "git+https://github.com/yk1125/CodeStudy.git"
   },
-  "type": "module",
   "scripts": {
-    "start": "eggctl start --daemon --title=egg-server-hackernews-tegg",
-    "stop": "eggctl stop --title=egg-server-hackernews-tegg",
-    "predev": "npm run clean",
+    "start": "egg-scripts start --daemon --title=egg-server-hackernews",
+    "stop": "egg-scripts stop --title=egg-server-hackernews",
     "dev": "egg-bin dev",
-    "test:local": "cross-env NODE_OPTIONS=\"--import @oxc-node/core/register\" vitest run",
-    "pretest": "npm run clean && npm run lint -- --fix",
-    "test": "npm run test:local",
-    "preci": "npm run clean && npm run lint",
-    "ci": "npm run test:local -- --coverage",
-    "postci": "npm run prepublishOnly && npm start && sleep 10 && npm stop && npm run clean",
-    "lint": "oxlint --type-aware",
-    "typecheck": "tsgo --noEmit",
-    "build": "tsc",
-    "clean": "tsc -b --clean",
-    "prepublishOnly": "npm run clean && npm run build"
+    "debug": "egg-bin debug",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "npm run lint && npm run cov"
   },
   "dependencies": {
-    "@eggjs/scripts": "beta",
-    "@eggjs/tracer": "beta",
-    "egg": "beta"
+    "egg": "^2.37.0",
+    "egg-scripts": "^2.11.0",
+    "egg-view-nunjucks": "^2.3.0",
+    "moment": "^2.29.4"
   },
   "devDependencies": {
-    "@eggjs/bin": "beta",
-    "@eggjs/mock": "beta",
-    "@eggjs/tsconfig": "beta",
-    "@oxc-node/core": "^0.0.35",
-    "@types/node": "24",
-    "@vitest/coverage-v8": "4",
-    "cross-env": "10",
-    "oxlint": "1",
-    "oxlint-tsgolint": "^0.10.0",
-    "typescript": "5",
-    "vitest": "4"
+    "egg-bin": "^4.16.0",
+    "egg-mock": "^3.26.0",
+    "eslint": "^7",
+    "eslint-config-egg": "^9"
   },
   "engines": {
-    "node": ">=22.18.0"
-  },
-  "packageManager": "npm@10.8.2"
+    "node": ">=12.0.0"
+  }
 }
